@@ -4,6 +4,7 @@ from pathlib import Path
 from decouple import config
 
 CHAPA_SECRET_KEY = config("CHAPA_SECRET_KEY")
+# alx_travel_app/settings.py
 
 
 # -----------------------------
