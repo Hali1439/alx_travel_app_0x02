@@ -1,10 +1,21 @@
-from django.shortcuts import render
+# listings/views.py
 
-# Create your views here.
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from rest_framework import viewsets
+from .models import Listing, Booking
+from .serializers import ListingSerializer, BookingSerializer
 
-@api_view(['GET'])
-def index(request):
-    return Response({'message': 'ALX Travel API is working!'})
- 
+
+class ListingViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing listing instances.
+    """
+    queryset = Listing.objects.all()
+    serializer_class = ListingSerializer
+
+
+class BookingViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing booking instances.
+    """
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
