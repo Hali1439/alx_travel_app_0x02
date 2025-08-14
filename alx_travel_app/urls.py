@@ -3,6 +3,8 @@ from django.urls import path, include
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from listings.views import InitiatePaymentView, VerifyPaymentView
+
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -17,5 +19,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('listings/', include('listings.urls')),
+    path('payments/initiate/', InitiatePaymentView.as_view(), name='initiate-payment'),
+    path('payments/verify/<str:tx_ref>/', VerifyPaymentView.as_view(), name='verify-payment'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
